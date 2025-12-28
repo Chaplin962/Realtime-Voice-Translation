@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:animateLayoutChanges="true"
+    android:background="@color/light_black"
+    android:fitsSystemWindows="true">
+
+    <android.widget.Toolbar
+        android:id="@+id/toolbarFirebase"
+        android:layout_width="0dp"
+        android:layout_height="?attr/actionBarSize"
+        android:background="#151519"
+        android:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        android:theme="@style/Theme.Toolbar"
+        android:title=" "
+        android:titleTextColor="@color/light_black"
+        app:layout_constraintBottom_toTopOf="@+id/cardView4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/chaplinLogo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:contentDescription="@string/chaplin_logo"
+        android:padding="8dp"
+        android:src="@drawable/chaplin_logo"
+        app:layout_constraintBottom_toBottomOf="@+id/toolbarFirebase"
+        app:layout_constraintStart_toStartOf="@+id/toolbarFirebase"
+        app:layout_constraintTop_toTopOf="@+id/toolbarFirebase" />
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:fontFamily="@font/nunito_sans_light"
+        android:text="@string/app_name"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/toolbarFirebase"
+        app:layout_constraintEnd_toStartOf="@+id/searchButton"
+        app:layout_constraintStart_toEndOf="@+id/chaplinLogo"
+        app:layout_constraintTop_toTopOf="@+id/toolbarFirebase" />
+
+    <com.chaplin.realtimevoicetranslation.tools.gui.ButtonSearch
+        android:id="@+id/searchButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="48dp"
+        android:background="@null"
+        android:scaleType="fitCenter"
+        android:src="@drawable/cancel_icon"
+        android:tint="@color/primary"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="@+id/toolbarFirebase"
+        app:layout_constraintEnd_toEndOf="@+id/toolbarFirebase"
+        app:layout_constraintTop_toTopOf="@+id/toolbarFirebase" />
+
+    <ProgressBar
+        android:id="@+id/progressBar3"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="48dp"
+        android:layout_marginBottom="8dp"
+        android:indeterminateTint="@color/primary"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/toolbarFirebase"
+        app:layout_constraintEnd_toEndOf="@+id/toolbarFirebase"
+        app:layout_constraintHorizontal_bias="1"
+        app:layout_constraintStart_toStartOf="@+id/toolbarFirebase"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView4"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:backgroundTint="@color/white"
+        app:cardCornerRadius="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbarFirebase">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/tabLayout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/rectangle_8"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:tabBackground="@drawable/tab_background_selector"
+                app:tabIndicatorColor="@android:color/transparent"
+                app:tabSelectedTextColor="@color/secondary"
+                app:tabTextColor="@color/black">
+
+                <com.google.android.material.tabs.TabItem
+                    android:id="@+id/tabUsers"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Users" />
+
+                <com.google.android.material.tabs.TabItem
+                    android:id="@+id/tabGroups"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Groups" />
+            </com.google.android.material.tabs.TabLayout>
+
+
+            <ListView
+                android:id="@+id/list_view"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:animateLayoutChanges="true"
+                android:childDivider="#00000000"
+                android:divider="#00000000"
+                android:dividerHeight="6dp"
+                android:overScrollMode="never"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/noPermission"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginEnd="32dp"
+                android:layout_marginBottom="8dp"
+                android:text="@string/error_missing_location_permissions"
+                android:textAlignment="center"
+                android:textColor="@color/red"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:id="@+id/noBluetoothLe"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="32dp"
+                android:layout_marginBottom="8dp"
+                android:text="@string/error_missing_bluetooth_le"
+                android:textAlignment="center"
+                android:textColor="@color/red"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0" />
+
+            <View
+                android:id="@+id/rectangle_1"
+                android:layout_width="229dp"
+                android:layout_height="224dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <View
+                android:id="@+id/rectangle_2"
+                android:layout_width="198dp"
+                android:layout_height="199dp"
+                android:background="@drawable/rectangle_2"
+                app:layout_constraintBottom_toBottomOf="@+id/rectangle_1"
+                app:layout_constraintEnd_toEndOf="@+id/rectangle_1"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="@+id/rectangle_1"
+                app:layout_constraintTop_toTopOf="@+id/rectangle_1"
+                app:layout_constraintVertical_bias="0.5" />
+
+            <View
+                android:id="@+id/rectangle_3"
+                android:layout_width="150dp"
+                android:layout_height="151dp"
+                android:background="@drawable/rectangle_3"
+                app:layout_constraintBottom_toBottomOf="@+id/rectangle_2"
+                app:layout_constraintEnd_toEndOf="@+id/rectangle_2"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="@+id/rectangle_2"
+                app:layout_constraintTop_toTopOf="@+id/rectangle_2"
+                app:layout_constraintVertical_bias="0.5" />
+
+            <com.chaplin.realtimevoicetranslation.tools.gui.ButtonMic
+                android:id="@+id/buttonMic"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="@null"
+                android:scaleType="fitCenter"
+                android:src="@drawable/mic"
+                app:layout_constraintBottom_toBottomOf="@+id/rectangle_3"
+                app:layout_constraintEnd_toEndOf="@+id/rectangle_3"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="@+id/rectangle_3"
+                app:layout_constraintTop_toTopOf="@+id/rectangle_3"
+                app:layout_constraintVertical_bias="0.5" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="12dp"
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toBottomOf="@+id/rectangle_3"
+                app:layout_constraintEnd_toStartOf="@+id/buttonSound"
+                app:layout_constraintStart_toEndOf="@+id/editText"
+                app:layout_constraintTop_toBottomOf="@+id/buttonMic">
+
+                <TextView
+                    android:id="@+id/inputMicType"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="0dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginBottom="12dp"
+                    android:fontFamily="@font/nunito_sans"
+                    android:text="@string/mic"
+                    android:textAlignment="center"
+                    android:textColor="@color/very_dark_gray"
+                    android:textSize="9sp"
+                    android:visibility="visible" />
+            </LinearLayout>
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/button2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginBottom="8dp"
+                android:clickable="true"
+                android:elevation="16dp"
+                android:focusable="true"
+                android:src="@drawable/walkie_talkie_white_icon"
+                android:tint="@color/primary"
+                app:backgroundTint="@color/accent_white"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

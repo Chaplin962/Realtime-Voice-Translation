@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
-
-    <!--https://developer.android.com/reference/android/speech/tts/TextToSpeech-->
+    xmlns:tools="http://schemas.android.com/tools"
+    android:versionName="0.01"
+    android:versionCode="1">
+    <!-- https://developer.android.com/reference/android/speech/tts/TextToSpeech -->
     <queries>
         <intent>
             <action android:name="android.intent.action.TTS_SERVICE" />
@@ -11,53 +12,56 @@
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.SEND_DOWNLOAD_COMPLETED_INTENTS" />
     <uses-permission android:name="android.permission.BROADCAST_STICKY" />
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
     <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
-
-    <!--<uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <!--
+<uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
-    <uses-permission android:name="android.permission.CHANGE_WIFI_MULTICAST_STATE" />-->
-
-    <uses-permission android:name="android.permission.BLUETOOTH" android:maxSdkVersion="30"/>
-    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" android:maxSdkVersion="30"/>
-    <uses-permission android:name="android.permission.BLUETOOTH_SCAN" android:usesPermissionFlags="neverForLocation"/>
+    <uses-permission android:name="android.permission.CHANGE_WIFI_MULTICAST_STATE" />
+    -->
+    <uses-permission
+        android:name="android.permission.BLUETOOTH"
+        android:maxSdkVersion="30" />
+    <uses-permission
+        android:name="android.permission.BLUETOOTH_ADMIN"
+        android:maxSdkVersion="30" />
+    <uses-permission
+        android:name="android.permission.BLUETOOTH_SCAN"
+        android:usesPermissionFlags="neverForLocation" />
     <uses-permission android:name="android.permission.BLUETOOTH_ADVERTISE" />
     <uses-permission android:name="android.permission.BLUETOOTH_CONNECT" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-
-    <!--<uses-permission android:name="android.permission.BLUETOOTH" />
+    <!--
+<uses-permission android:name="android.permission.BLUETOOTH" />
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />-->
-
-    <!--<uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE" />-->
-
+    <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
+    -->
+    <!-- <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE" /> -->
     <uses-permission android:name="android.permission.WAKE_LOCK" />
 
     <application
-        android:name="nie.translator.rtranslator.Global"
-        tools:replace="android:allowBackup"
+        android:name=".Global"
         android:allowBackup="false"
-        android:fullBackupContent="false"
-        android:dataExtractionRules="@xml/data_extraction_rules"
         android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="false"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:requestLegacyExternalStorage="true"
         android:largeHeap="true"
+        android:requestLegacyExternalStorage="true"
         android:supportsRtl="true"
         android:theme="@style/Theme.Speech"
-        tools:ignore="GoogleAppIndexingWarning">
+        tools:ignore="GoogleAppIndexingWarning"
+        tools:replace="android:allowBackup">
         <activity
-            android:name="nie.translator.rtranslator.LoadingActivity"
+            android:name=".voice_translation.firebase.FragmentFirebaseSignInActivity"
             android:exported="true"
             android:launchMode="singleTask"
-            android:noHistory="true"
-            android:theme="@style/Theme.App.Starting">
+            android:theme="@style/Theme.AppCompat.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -65,53 +69,69 @@
                 <category android:name="android.intent.category.MULTIWINDOW_LAUNCHER" />
             </intent-filter>
         </activity>
-        <!--configChanges serve a evitare il riavvio dell' activity quando ruota e quindi per evitare che alla rotazione si notifichi con un Toast l' avvio del
-        service in background, inoltre così la rotazione sarà più fluida e per ora non abbiamo problemi ne per la rotazione ne per il ridimensionamento quando in finestra-->
         <activity
-            android:name="nie.translator.rtranslator.voice_translation.VoiceTranslationActivity"
+            android:name=".LoadingActivity"
             android:exported="true"
             android:launchMode="singleTask"
-            android:configChanges="orientation|screenLayout|screenSize"
-            android:windowSoftInputMode="adjustResize|stateHidden"
+            android:noHistory="true"
+            android:theme="@style/Theme.App.Starting" />
+        <!--
+configChanges serve a evitare il riavvio dell' activity quando ruota e quindi per evitare che alla rotazione si notifichi con un Toast l' avvio del
+        service in background, inoltre così la rotazione sarà più fluida e per ora non abbiamo problemi ne per la rotazione ne per il ridimensionamento quando in finestra
+        -->
+        <activity
+            android:name=".voice_translation.VoiceTranslationActivity"
+            android:configChanges="orientation|screenLayout|layoutDirection|screenSize"
+            android:exported="true"
+            android:launchMode="singleTask"
+            android:theme="@style/Theme.Speech"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".settings.SettingsActivity"
+            android:exported="true"
+            android:launchMode="singleTask"
             android:theme="@style/Theme.Speech" />
         <activity
-            android:name="nie.translator.rtranslator.settings.SettingsActivity"
-            android:exported="true"
-            android:launchMode="singleTask"
-            android:theme="@style/Theme.Settings" />
-        <activity
-            android:name="nie.translator.rtranslator.access.AccessActivity"
+            android:name=".access.AccessActivity"
             android:exported="true"
             android:launchMode="singleTask"
             android:theme="@style/Theme.Speech" />
-        <activity android:name="nie.translator.rtranslator.GeneralActivity" />
-        <activity android:name="nie.translator.rtranslator.tools.ImageActivity"
-            android:exported="true"
-            android:launchMode="singleTask"
-            android:theme="@style/Theme.Speech"/>
+        <activity android:name=".GeneralActivity" />
 
-        <service android:name="nie.translator.rtranslator.voice_translation._conversation_mode._conversation.ConversationService"
-            android:foregroundServiceType="microphone"/>
-        <service android:name="nie.translator.rtranslator.voice_translation._walkie_talkie_mode._walkie_talkie.WalkieTalkieService"
-            android:foregroundServiceType="microphone"/>
-        <service android:name="nie.translator.rtranslator.GeneralService" />
+        <service
+            android:name=".voice_translation._conversation_mode._conversation.ConversationService"
+            android:foregroundServiceType="microphone" />
+        <service android:name=".GeneralService" />
+
+        <service
+            android:name=".voice_translation.firebase.MyFirebaseService"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
+            </intent-filter>
+        </service>
+        <service
+            android:name=".voice_translation.firebase.FirebaseConversationService"
+            android:exported="true"
+            android:foregroundServiceType="microphone">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
 
         <provider
             android:name="androidx.core.content.FileProvider"
-            android:authorities="com.gallery.RTranslator.2.0.provider"
+            android:authorities="com.gallery.RealtimeVoiceTranslator.1.0.provider"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/filepaths" />
         </provider>
+
         <uses-library
             android:name="com.sec.android.app.multiwindow"
             android:required="false" />
-        <receiver android:name=".access.DownloadReceiver" android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.DOWNLOAD_COMPLETE" />
-            </intent-filter>
-        </receiver>
     </application>
+
 </manifest>

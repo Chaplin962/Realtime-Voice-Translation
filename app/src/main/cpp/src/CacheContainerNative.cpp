@@ -1,19 +1,3 @@
-/*
- * Copyright 2016 Luca Martino.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copyFile of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
 #include <jni.h>
 #include <stdio.h>
 #include <vector>
@@ -125,7 +109,7 @@ private:
 
 extern "C"
 JNIEXPORT jlong JNICALL
-Java_nie_translator_rtranslator_tools_nn_CacheContainerNative_initialize(JNIEnv *env,
+Java_com_chaplin_realtimevoicetranslation_tools_nn_CacheContainerNative_initialize(JNIEnv *env,
                                      jobject thiz,
                                      jint dim1, jint dim2,
                                      jint dim3, jint dim4, jint dim5) {
@@ -135,7 +119,7 @@ Java_nie_translator_rtranslator_tools_nn_CacheContainerNative_initialize(JNIEnv 
 
 extern "C"
 JNIEXPORT void JNICALL
-Java_nie_translator_rtranslator_tools_nn_CacheContainerNative_insertValues(JNIEnv *env,
+Java_com_chaplin_realtimevoicetranslation_tools_nn_CacheContainerNative_insertValues(JNIEnv *env,
                                      jobject thiz,
                                      jlong cacheContainerPointer, jint index, jobject data) {
     __android_log_print(ANDROID_LOG_ERROR, "CACHE CONTAINER NATIVE", "%s", "inserting data");
@@ -145,7 +129,7 @@ Java_nie_translator_rtranslator_tools_nn_CacheContainerNative_insertValues(JNIEn
 
 extern "C"
 JNIEXPORT void JNICALL
-Java_nie_translator_rtranslator_tools_nn_CacheContainerNative_reorder(JNIEnv *env,
+Java_com_chaplin_realtimevoicetranslation_tools_nn_CacheContainerNative_reorder(JNIEnv *env,
                                        jobject thiz,
                                        jlong cacheContainerPointer, jintArray indexes) {
     __android_log_print(ANDROID_LOG_ERROR, "CACHE CONTAINER NATIVE", "%s", "reordering cache");
@@ -156,7 +140,7 @@ Java_nie_translator_rtranslator_tools_nn_CacheContainerNative_reorder(JNIEnv *en
 
 extern "C"
 JNIEXPORT jobject JNICALL
-Java_nie_translator_rtranslator_tools_nn_CacheContainerNative_getBuffer(JNIEnv *env,
+Java_com_chaplin_realtimevoicetranslation_tools_nn_CacheContainerNative_getBuffer(JNIEnv *env,
                                       jobject thiz,
                                       jlong cacheContainerPointer, jint index) {
     __android_log_print(ANDROID_LOG_ERROR, "CACHE CONTAINER NATIVE", "%s", "get cache buffer");
@@ -166,7 +150,7 @@ Java_nie_translator_rtranslator_tools_nn_CacheContainerNative_getBuffer(JNIEnv *
 
 extern "C"
 JNIEXPORT void JNICALL
-Java_nie_translator_rtranslator_tools_nn_CacheContainerNative_close(JNIEnv *env,
+Java_com_chaplin_realtimevoicetranslation_tools_nn_CacheContainerNative_close(JNIEnv *env,
                                         jobject thiz,
                                         jlong cacheContainerPointer) {
     __android_log_print(ANDROID_LOG_ERROR, "CACHE CONTAINER NATIVE", "%s", "closing cache container");
